@@ -1,6 +1,8 @@
+
 <div class="page-header">
   <div class="center-block">
-  <h1>Welcome</h1>
+  <h1>Welcome to LOLAnalytic</h1>
+  <p>The most personal League of Legends tool yet</p>
 </div>
 </div>
 
@@ -19,6 +21,7 @@
       <tr>
         <td><%= login.Username %></td>
         <td><%= login.Region %></td>
+        <p><%=extractJSON(login)%></p>
         <td><%= link_to 'Show', login %></td>
         <td><%= link_to 'Edit', edit_login_path(login) %></td>
         <td><%= link_to 'Destroy', login, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -33,6 +36,6 @@
 
 <br>
 <div class="login_button">
-  <%= link_to 'New Login', new_login_path, class:"btn btn-success" %>
+  <%= link_to 'Login', new_login_path, class:"btn btn-success" %>
 </div>
 
