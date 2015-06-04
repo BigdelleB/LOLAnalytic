@@ -11,12 +11,16 @@ module ApplicationHelper
 		uri=uri.open
 		str=uri.read
 		return str
+	end
 
+	def summoner_id(login)
+		champion= extractJSON(login)
+		#get champion id 
+		#return the id to use for future methods
+	end 
 
-
-		#result= Net::HTTP.get(URI.parse(url))
-		#result= RestClient.get(result)
-		
-		#puts result;
+	def summoner_stats(login)
+		#parse JSON to get the kills and match history stuff from it
+		#return all the necessary values in a table
 	end
 end
