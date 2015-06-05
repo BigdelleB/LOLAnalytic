@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :logins
+  resources :data
+
+  get 'show_kills' => 'data#show_kills'
 
   root 'logins#index'
   # The priority is based upon order of creation: first created -> highest priority.
