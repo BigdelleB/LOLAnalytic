@@ -22,12 +22,9 @@
         <div class= "id"
         <td><%= login.Username %></td>
         </div>
-         <!--<td><%= login.Region %></td>
-       <p><%=extractJSON(login)%></p>-->
-        <td><%= link_to 'Show', login %></td>
         <td><%= link_to 'Edit', edit_login_path(login) %></td>
         <td><%= link_to 'Destroy', login, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Stats', data_index_path %></td>
+        <td><%= link_to 'Stats', data_index_path(params: login.attributes) %></td>
         <p>
           
         </p>
