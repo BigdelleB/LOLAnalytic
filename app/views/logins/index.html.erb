@@ -20,7 +20,7 @@
     <% @logins.each do |login| %>
       <tr>
         <div class= "username">
-          <td><%= login.Username,  :id => "username" %></td>
+          <td><%= login.Username%></td>
         </div>
         <td><%= link_to 'Edit', edit_login_path(login) %></td>
         <td><%= link_to 'Destroy', login, method: :delete, data: { confirm: 'Are you sure?' } %></td>
