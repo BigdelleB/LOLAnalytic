@@ -6,6 +6,7 @@ module DataHelper
 	@@champion_name
 	@@champ_id
 	@@region
+	@@overall_ranked_stats
 
 
 	#gets the JSON values I need from a champion to start calling more advanced methods
@@ -24,9 +25,8 @@ module DataHelper
 	#initializes the champion id 
 	def summoner_id(login)
 		champion= extractJSON(login)
-		id = JSON.parse(champion)['chelski']['id']
+		id = JSON.parse(champion)[@@champion_name]['id']
 		@@champ_id=id
-		
 	end 
 
 	#returns massive JSON of ranked stats BY CHAMPIONID
@@ -35,10 +35,14 @@ module DataHelper
 		url="https://"+@@region+".api.pvp.net/api/lol/"+@@region+"/v1.3/stats/by-summoner/"+@@champ_id.to_s+"/ranked?season=SEASON2015&api_key=28ba1d65-cda8-4e79-90ad-aad6b1ab6326"
 		uri=URI.parse(url)
 		str=uri.read
-		return str
+		@@overall_ranked_stats=str;
+		#return str;
 	end
 
-	#get every champion used by id and then store in array, iterate through each champions id and get a smaller array of the stats im interested
-	#in like kills deaths etc, return each array of data 
-	
+	#method to return an array of the champions names used by the summoner
+	def get_champ_names
+		id_array=JSON.parse(@@overall_ranked_stats)['champions'][0]['id']
+		return id_array;
+	end
+
 end
