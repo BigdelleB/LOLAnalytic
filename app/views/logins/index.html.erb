@@ -25,7 +25,7 @@
           </td>
 
           <td><%= link_to 'Edit', edit_login_path(login), :id => 'edit_option' %></td>
-          <td><%= link_to 'New', login, method: :delete, data: { confirm: 'Are you sure?' }, :id => 'destroy_option' %></td>
+          <td><%= link_to 'Delete', login, method: :delete, data: { confirm: 'Are you sure?' }, :id => 'destroy_option' %></td>
           <td><%= link_to 'Stats', data_index_path(params: login.attributes), :id => 'stats_option' %></td>
 
         <p>
