@@ -1,4 +1,4 @@
-
+<body id="background">
 <div class="page-header">
   <div class="center-block">
   <h1>Welcome to LOLAnalytic</h1>
@@ -19,8 +19,8 @@
   <tbody>
     <% @logins.each do |login| %>
       <tr>
-        <div class= "values"
-        <td><%= login.Username %></td>
+        <div class= "username">
+          <td><%= login.Username,  :id => "username" %></td>
         </div>
         <td><%= link_to 'Edit', edit_login_path(login) %></td>
         <td><%= link_to 'Destroy', login, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -38,4 +38,4 @@
 <div class="login_button">
   <%= link_to 'Login', new_login_path, class:"btn btn-success" %>
 </div>
-
+</body>

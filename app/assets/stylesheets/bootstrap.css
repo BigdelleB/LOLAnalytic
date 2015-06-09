@@ -8,8 +8,6 @@
  * Designed and built with all the love in the world by @mdo and @fat.
  */
 
-
-
 .clearfix {
   *zoom: 1;
 }
@@ -71,6 +69,7 @@ html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
+
 }
 
 a:focus {
@@ -224,13 +223,20 @@ textarea {
 }
 
 body {
+
   margin: 0;
+ 
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
+
   color: #333333;
-  background-color: #F9ffff;
+  background-color: #ffffff;
+  background-image: url("http://i61.tinypic.com/2mhg3z8.jpg");
+  background-position: center top;
+  
 }
+
 
 a {
   color: #0088cc;
