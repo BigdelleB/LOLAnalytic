@@ -36,13 +36,44 @@ module DataHelper
 		uri=URI.parse(url)
 		str=uri.read
 		@@overall_ranked_stats=str;
-		#return str;
+		
 	end
 
-	#method to return an array of the champions names used by the summoner
-	def get_champ_names
-		id_array=JSON.parse(@@overall_ranked_stats)['champions'][0]['id']
-		return id_array;
+	#method to return an array of the champion id's used in ranked
+	def get_champ_ids
+
+		jason=JSON.parse(@@overall_ranked_stats)['champions']
+		champs=jason.size
+		id_array=[0..champs]
+
+		for i in 0..(champs-1)
+			id_array.insert(i,JSON.parse(@@overall_ranked_stats)['champions'][i])
+		end
+
+		id_array2=[]
+
+		for i in 0..(champs-1)
+			id_array2.insert(i,id_array[i]['id'])
+		end
+		
+		return id_array2
 	end
+
+	#returns the ranked champions names used
+	def get_champ_names
+		id_array=get_champ_ids
+		champ_names=[]
+		#the last id is always 0, this 0 gives the overall kills and overall stats, not per champion, so we dont want 0..4, we'd want 0..3
+		for i in 0..(id_array.size-2)
+			url ="https://global.api.pvp.net/api/lol/static-data/"+@@region+"/v1.2/champion/"+id_array[i].to_s+"?api_key=28ba1d65-cda8-4e79-90ad-aad6b1ab6326"
+			uri=URI.parse(url)
+			str=uri.read
+			champ_names.insert(i,JSON.parse(str)['name'])
+		end
+		return champ_names
+	end
+
+	
+
 
 end
