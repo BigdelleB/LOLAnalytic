@@ -194,6 +194,25 @@ module DataHelper
 			return stats
 	end 
 
+	#average damage taken per game
+	def avg_damage_taken_per_game
+		#initialize double array
+			stats=[]
+
+			all_info=@@overall_ranked_stats
+			puts @@number_of_champs
+			i=0
+			while i<@@number_of_champs.to_i
+				overallhurt= JSON.parse(all_info)['champions'][i]['stats']['totalDamageTaken']
+				total_games=JSON.parse(all_info)['champions'][i]['stats']['totalSessionsPlayed']
+				avg=overallhurt/total_games.to_f
+				
+				stats.insert(i,avg)
+				i=i+1
+			end	
+			return stats
+	end 
+
 
 
 

@@ -3,20 +3,63 @@
 		<h1>Stats</h1>
 		<h2>(All averages are per game)</h2>
 	</div>
+	
+
+	<div class = "all_data">
+		<table class="table table-stripped">
+			<p><%extractJSON(params)%></p>
+			<p><% ranked_stats_JSON(params)%></p>
+			<p><% get_champ_ids%></p>
+			
+	
+				<td>Champion Used
+					<p><%get_champ_names.each do |champ|%></p>
+					<p><%=champ%></p>
+					<%end%>
+				</td>
 
 
+			
+				<td>Kills
+					<p><%avg_kills_per_game.each do |kill|%></p>
+					<p><%=kill%></p>
+					<%end%>
+				</td>
+	
 
+				<td>Deaths
+					<p><%avg_deaths_per_game.each do |death|%></p>
+					<p><%=death%></p>
+					<%end%>
+				</td>
+			
 
-	<p><%extractJSON(params)%></p>
-	<p><% ranked_stats_JSON(params)%></p>
-	<p><% get_champ_ids%></p>
-	<p>Champions used <%= get_champ_names%></p>
-	<p>Average kills<%=avg_kills_per_game%></p>
-	<p>Average deaths<%=avg_deaths_per_game%></p>
-	<p>Average assists<%=avg_assists_per_game%></p>
-	<p>Average damage<%=avg_damage_per_game%></p>
-	<p>Average gold<%=avg_gold_per_game%></p>
+			<td>Assists
+				<p><%avg_assists_per_game.each do |assist|%></p>
+				<p><%=assist%></p>
+				<%end%>
+			</td>
+			
+
+			<td>Damage Given
+				<p><%avg_damage_per_game.each do |damage_given|%></p>
+				<p><%=damage_given%></p>
+				<%end%>
+			</td>
+
+			<td>Gold Earned
+				<p><%avg_gold_per_game.each do |gold|%></p>
+				<p><%=gold%></p>
+				<%end%>
+			</td>
+			
+			<td>Damage Taken
+				<p><%avg_damage_taken_per_game.each do |damage_taken|%></p>
+				<p><%=damage_taken%></p>
+				<%end%>
+			</td>
+
+		</table>
+	</div>
 
 </body>
-
-
