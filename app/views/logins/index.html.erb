@@ -1,44 +1,56 @@
 <body id="background">
-<div class="page-header">
-  <div class="center-block">
-  <h1>Welcome to LOLAnalytic</h1>
-  <p>The most personal League of Legends tool yet</p>
-</div>
-</div>
+    <div class="page-header">
+      <div class="center-block">
+      <h1>Welcome to LOLAnalytic</h1>
+      <p>The most personal League of Legends tool yet</p>
+    </div>
+    </div>
 
 
-<table>
-  <thead>
-    <tr>
+    <table>
+      <thead>
+        <tr>
+
+         
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @logins.each do |login| %>
+          <tr>
+            
+              <td div class='username' id='login<%=login.id%>'>
+                <%= login.Username%>
+              </td>
+
+              <td><%= link_to 'Edit', edit_login_path(login), :id => 'edit_option' %></td>
+              <td><%= link_to 'Delete', login, method: :delete, data: { confirm: 'Are you sure?' }, :id => 'destroy_option' %></td>
+              <td><%= link_to 'Stats', data_index_path(params: login.attributes), :id => 'stats_option' %></td>
+
+            <p>
+              
+            </p>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
      
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @logins.each do |login| %>
-      <tr>
+    <br>
+    <div class="login_button">
+      <%= link_to 'Login', new_login_path, class:"btn btn-success" %>
+    </div>
         
-          <td div class='username' id='login<%=login.id%>'>
-            <%= login.Username%>
-          </td>
 
-          <td><%= link_to 'Edit', edit_login_path(login), :id => 'edit_option' %></td>
-          <td><%= link_to 'Delete', login, method: :delete, data: { confirm: 'Are you sure?' }, :id => 'destroy_option' %></td>
-          <td><%= link_to 'Stats', data_index_path(params: login.attributes), :id => 'stats_option' %></td>
-
+    <footer id="disclaimer">
         <p>
           
+          LOLAnalytic isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
         </p>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
-<br>
-<div class="login_button">
-  <%= link_to 'Login', new_login_path, class:"btn btn-success" %>
-</div>
+      </footer>
 </body>
+
+
+
