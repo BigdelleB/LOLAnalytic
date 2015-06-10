@@ -3,12 +3,20 @@ module DataHelper
 	require 'net/http'
 	require 'open-uri'
 
+	#the username of the summoner
 	@@champion_name
+	#the id of the summoner, needed to make more advanced API calls
 	@@champ_id
+	#the region of the champion
 	@@region
+	#massive JSON of every kills,deaths etc for each champion used in a ranked game
 	@@overall_ranked_stats
 	#if the summoner is not lvl 30 this will not work, we have to check
 	@@lvl
+	#field that holds the number of champions that this summoner uses in ranked games
+	@@number_of_champs
+
+
 
 
 	#gets the JSON values I need from a champion to start calling more advanced API calls
@@ -56,6 +64,7 @@ module DataHelper
 		else 
 			jason=JSON.parse(@@overall_ranked_stats)['champions']
 			champs=jason.size
+			@@number_of_champs=champs-1;
 			id_array=[0..champs]
 
 			for i in 0..(champs-1)
@@ -91,10 +100,102 @@ module DataHelper
 		end
 	end
 
-	#method to return an array for every single champion used with the info we want
-	def champ_stats
+	#method to give array of avg kills per game, avg deaths per game, avg assists per game, avg damage dealt with champ per game, avg gold per game
+	def avg_kills_per_game
+		#initialize double array
+		stats=[]
 
+		all_info=@@overall_ranked_stats
+		puts @@number_of_champs
+		i=0
+		while i<@@number_of_champs.to_i
+			overallkills= JSON.parse(all_info)['champions'][i]['stats']['totalChampionKills']
+			total_games=JSON.parse(all_info)['champions'][i]['stats']['totalSessionsPlayed']
+			avg=overallkills/total_games.to_f
+			
+			stats.insert(i,avg)
+			i=i+1
+		end	
+		return stats
 	end 
+
+	#avg deaths per game
+	def avg_deaths_per_game
+		#initialize double array
+			stats=[]
+
+			all_info=@@overall_ranked_stats
+			puts @@number_of_champs
+			i=0
+			while i<@@number_of_champs.to_i
+				overalldeaths= JSON.parse(all_info)['champions'][i]['stats']['totalDeathsPerSession']
+				total_games=JSON.parse(all_info)['champions'][i]['stats']['totalSessionsPlayed']
+				avg=overalldeaths/total_games.to_f
+				
+				stats.insert(i,avg)
+				i=i+1
+			end	
+			return stats
+	end 
+
+	#avg assists per game
+	def avg_assists_per_game
+		#initialize double array
+			stats=[]
+
+			all_info=@@overall_ranked_stats
+			puts @@number_of_champs
+			i=0
+			while i<@@number_of_champs.to_i
+				overallassists= JSON.parse(all_info)['champions'][i]['stats']['totalAssists']
+				total_games=JSON.parse(all_info)['champions'][i]['stats']['totalSessionsPlayed']
+				avg=overallassists/total_games.to_f
+				
+				stats.insert(i,avg)
+				i=i+1
+			end	
+			return stats
+	end 
+
+	#avg overall damage dealt per game
+	def avg_damage_per_game
+		#initialize double array
+			stats=[]
+
+			all_info=@@overall_ranked_stats
+			puts @@number_of_champs
+			i=0
+			while i<@@number_of_champs.to_i
+				overalldamage= JSON.parse(all_info)['champions'][i]['stats']['totalDamageDealt']
+				total_games=JSON.parse(all_info)['champions'][i]['stats']['totalSessionsPlayed']
+				avg=overalldamage/total_games.to_f
+				
+				stats.insert(i,avg)
+				i=i+1
+			end	
+			return stats
+	end 
+
+	def avg_gold_per_game
+		#initialize double array
+			stats=[]
+
+			all_info=@@overall_ranked_stats
+			puts @@number_of_champs
+			i=0
+			while i<@@number_of_champs.to_i
+				overallgold= JSON.parse(all_info)['champions'][i]['stats']['totalGoldEarned']
+				total_games=JSON.parse(all_info)['champions'][i]['stats']['totalSessionsPlayed']
+				avg=overallgold/total_games.to_f
+				
+				stats.insert(i,avg)
+				i=i+1
+			end	
+			return stats
+	end 
+
+
+
 
 
 end

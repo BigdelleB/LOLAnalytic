@@ -1,6 +1,7 @@
 <body id = "background2">
 	<div class="heading">
 		<h1>Stats</h1>
+		<h2>(All averages are per game)</h2>
 	</div>
 
 
@@ -9,8 +10,12 @@
 	<p><%extractJSON(params)%></p>
 	<p><% ranked_stats_JSON(params)%></p>
 	<p><% get_champ_ids%></p>
-	<p><%= get_champ_names%></p>
-
+	<p>Champions used <%= get_champ_names%></p>
+	<p>Average kills<%=avg_kills_per_game%></p>
+	<p>Average deaths<%=avg_deaths_per_game%></p>
+	<p>Average assists<%=avg_assists_per_game%></p>
+	<p>Average damage<%=avg_damage_per_game%></p>
+	<p>Average gold<%=avg_gold_per_game%></p>
 
 </body>
 
