@@ -42,26 +42,17 @@ module DataHelper
 
 	#returns massive JSON of ranked stats BY CHAMPIONID
 	def ranked_stats_JSON(login)
-		if @@lvl!=30
-			return "Summoner not ranked"
-		
-		else 
-			summoner_id(login)
-			url="https://"+@@region+".api.pvp.net/api/lol/"+@@region+"/v1.3/stats/by-summoner/"+@@champ_id.to_s+"/ranked?season=SEASON2015&api_key=28ba1d65-cda8-4e79-90ad-aad6b1ab6326"
-			uri=URI.parse(url)
-			str=uri.read
-			@@overall_ranked_stats=str;
-		end
+		summoner_id(login)
+		url="https://"+@@region+".api.pvp.net/api/lol/"+@@region+"/v1.3/stats/by-summoner/"+@@champ_id.to_s+"/ranked?season=SEASON2015&api_key=28ba1d65-cda8-4e79-90ad-aad6b1ab6326"
+		uri=URI.parse(url)
+		str=uri.read
+		@@overall_ranked_stats=str;
+	end
 
 		
-	end
 
 	#method to return an array of the champion id's used in ranked
 	def get_champ_ids
-		if @@lvl!=30
-			return "Summoner not ranked"
-		
-		else 
 			jason=JSON.parse(@@overall_ranked_stats)['champions']
 			champs=jason.size
 			@@number_of_champs=champs-1;
@@ -78,15 +69,12 @@ module DataHelper
 			end
 		
 			return id_array2
-		end
+		
 	end
 
 	#returns the ranked champions names used
 	def get_champ_names
-		if @@lvl!=30
-			return "Summoner not ranked"
 		
-		else
 			id_array=get_champ_ids
 			champ_names=[]
 			#the last id is always 0, this 0 gives the overall kills and overall stats, not per champion, so we dont want 0..4, we'd want 0..3
@@ -97,16 +85,12 @@ module DataHelper
 				champ_names.insert(i,JSON.parse(str)['name'])
 			end
 			return champ_names
-		end
+		
 	end
 
 	#method to give array of avg kills per game, avg deaths per game, avg assists per game, avg damage dealt with champ per game, avg gold per game
 	def avg_kills_per_game
-		#initialize double array
-		if @@lvl!=30
-			return "Summoner not ranked"
 		
-		else 
 			stats=[]
 
 			all_info=@@overall_ranked_stats
@@ -121,16 +105,13 @@ module DataHelper
 				i=i+1
 			end	
 			return stats
-		end
+	
 	end 
 
 	#avg deaths per game
 	def avg_deaths_per_game
 		#initialize double array
-		if @@lvl!=30
-			return "Summoner not ranked"
 		
-		else 
 			stats=[]
 
 			all_info=@@overall_ranked_stats
@@ -145,16 +126,13 @@ module DataHelper
 				i=i+1
 			end	
 			return stats
-		end
+		
 	end 
 
 	#avg assists per game
 	def avg_assists_per_game
 		#initialize double array
-		if @@lvl!=30
-			return "Summoner not ranked"
 		
-		else 
 			stats=[]
 
 			all_info=@@overall_ranked_stats
@@ -169,16 +147,13 @@ module DataHelper
 				i=i+1
 			end	
 			return stats
-		end
+		
 	end 
 
 	#avg overall damage dealt per game
 	def avg_damage_per_game
 		#initialize double array
-		if @@lvl!=30
-			return "Summoner not ranked"
-		
-		else 
+		 
 			stats=[]
 
 			all_info=@@overall_ranked_stats
@@ -193,15 +168,12 @@ module DataHelper
 				i=i+1
 			end	
 			return stats
-		end
+		
 	end 
 
 	def avg_gold_per_game
 		#initialize double array
-		if @@lvl!=30
-			return "Summoner not ranked"
 		
-		else 
 			stats=[]
 
 			all_info=@@overall_ranked_stats
@@ -216,16 +188,13 @@ module DataHelper
 				i=i+1
 			end	
 			return stats
-		end
+		
 	end 
 
 	#average damage taken per game
 	def avg_damage_taken_per_game
 		#initialize double array
-		if @@lvl!=30
-			return "Summoner not ranked"
 		
-		else 
 			stats=[]
 
 			all_info=@@overall_ranked_stats
@@ -240,11 +209,11 @@ module DataHelper
 				i=i+1
 			end	
 			return stats
-		end
+		
 	end 
 
 
-
-
-
 end
+
+
+
