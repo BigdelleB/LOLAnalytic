@@ -1,6 +1,6 @@
 class LoginsController < ApplicationController
   before_action :set_login, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /logins
   # GET /logins.json
   def index
@@ -72,4 +72,9 @@ class LoginsController < ApplicationController
     def login_params
       params.require(:login).permit(:Username, :Region)
     end
+
+
+
+
+
 end
