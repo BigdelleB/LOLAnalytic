@@ -1,6 +1,7 @@
 class Login < ActiveRecord::Base
 	require 'open-uri'
-
+	validates :Username, :presence => true
+	validates :Region, :presence => true
 	validate :valid_level
   
   
