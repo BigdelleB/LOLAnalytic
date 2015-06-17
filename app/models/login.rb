@@ -13,27 +13,35 @@ class Login < ActiveRecord::Base
 
  	begin
  		value=open(result)
-		status=value.status[0]
-		if status.to_i!=200
-			errors.add(:login,status)
-		end
- 	rescue OpenURI::HTTPError
- 		errors.add(:login, "champion is not correct level or name may have been entered incorrectly")
+
+		#status=value.stats[0]
+		#if status.to_i!=200
+		#	errors.add(:login,status)
+		#end
+	
+ 	#rescue OpenURI::HTTPError
+ 	#	errors.add(:login, "champion name may have been entered incorrectly")
+ 	#rescue SocketError
+ 	#	errors.add(:Please, "make sure that the Username AND Region were entered correctly")
+ 	#end
+	end
+	uri=URI.parse(result)
+	
+	str=uri.read
+	lvl=JSON.parse(str)[username]["summonerLevel"]
+
+	if lvl.to_i!=30
+		errors.add(:Champion, "is not level 30")
+	end
  	rescue SocketError
- 		errors.add(:login, "Please make sure that the Username AND Region were entered correctly")
+ 		errors.add(:login, "champion name may have been entered incorrectly")
+ 	rescue URI::InvalidURIError
+		errors.add(:Issue, "make sure you entered everything correctly")
+	rescue OpenURI::HTTPError
+ 		errors.add(:login, "champion name may have been entered incorrectly")
  	end
 
- 	uri=URI.parse(result)
-		#uri=uri.open
-		str=uri.read
-		lvl=JSON.parse(str)[username]["summonerLevel"]
-
-		if lvl!=30
-			errors.add(:login, "You are not level 30 yet, this is only for ranked statistics")
-		end
-
-
-  	end
+  
 
 end
 
