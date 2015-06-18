@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rails_12factor'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 ruby '2.1.5'
 gem 'pg'
@@ -36,7 +37,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 
 group :development, :test do
 	gem 'sqlite3'
-gem 'bootstrap-sass', '~> 3.3.5'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
