@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails_12factor'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+  ruby '2.1.5'
+   gem 'pg'
 
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
@@ -35,9 +37,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.5'
 
 group :development, :test do
-  ruby '2.1.5'
-  gem 'pg'
-  
+
+
 	gem 'sqlite3'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
